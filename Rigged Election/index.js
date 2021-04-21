@@ -1,5 +1,5 @@
 var trollUp = false;
-
+var run1 = false;
 let voteCount = {
     nixon: 60,
     mcgovern: 40,
@@ -18,8 +18,18 @@ let voteCount = {
         }
     },
     mcgovernVote(){
-        this.nixon = 100
-        this.mcgovern = 0
+        this.nixon = 100;
+        this.mcgovern = 0;
+        
+        document.getElementById("mcGovern").addEventListener("mousemove", followtroll);
+        function followtroll(){
+            var x = event.clientX;
+            var y = event.clientY;
+            var node = document.getElementById("followtroll")
+            node.style.top = y + "px"
+            node.style.left = x + "px"
+            node.style.opacity += 1
+        }
     },
     updateVote() {
         document.getElementById("nixonBar").style.width = this.nixon + "%"
@@ -38,7 +48,6 @@ function troll(){
     document.getElementById("troll").style.cssFloat = "initial"
     document.getElementById('trollFrame').src='dancing_troll.gif'}
     trollUp = true
-    document.getElementById("troll").style.cursor.url = 'loading.gif' 
     var audio = new Audio('US.mp3');
         audio.play();
 }
@@ -58,14 +67,14 @@ function correctVote(){
     voteCount.nixonVote()
     voteCount.updateVote() 
 }
-document.addEventListener("mousemove", function(){
-    var button = document.getElementById('cardGovern');
-        var x = instanceOfMouseEvent.clientX;
-        var y = instanceOfMouseEvent.clientY;
-        console.log(x)
-          button.style.display = 'block';
-          button.style.top = y + 100 + "px";
-          button.style.left = x + 100 + "px";
-        button.style.display='none';
-  });
+function addClass(){
+    if(run1 != false){
+
+    }else{
+        run1 = true;
+        document.getElementById('body').classList.add("addClass")
+    }
+
+}
+
 
